@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./new_theme.css">
+    <title>Event Planner</title>
+</head>
+
+<body>
+    <div class="theme_container">
+
+        <!-- Date and Time Display Section -->
+        <section class="mini_theme_content">
+            <div class="date_container">
+                <p><strong>Day:</strong> <span id="current-day">Loading...</span></p>
+                <p><strong>Date:</strong> <span id="current-date">Loading...</span></p>
+            </div>
+            <div class="planner-load-button" style="text-align: center; margin-bottom: 20px;">
+                <button id="new-event-planner" class="load-planner-btn">Event Planner</button>
+            </div>
+            <div class="time_container">
+                <p><strong>Current Time:</strong> <span id="current-time">Loading...</span></p>
+            </div>
+        </section>
+
+        <!-- Remaining Time Section -->
+        <section class="desired_data_container">
+            <div class="remaining_time_card">
+                <p><strong>Time left today:</strong></p>
+                <h3 id="today-time-left">Calculating...</h3>
+            </div>
+            <div class="remaining_time_card">
+                <p><strong>Time left this month:</strong></p>
+                <h3 id="monthly-time-left">Calculating...</h3>
+            </div>
+            <div class="remaining_time_card">
+                <p><strong>Time left this year:</strong></p>
+                <h3 id="yearly-time-left">Calculating...</h3>
+            </div>
+        </section>
+        <br>
+        <br>
+        <!-- Event Planner Section -->
+        <section class="other_important_content">
+            <div class="event_planner">
+                <h1>Event Planner</h1>
+                <p>Plan your future events and track the remaining time for them!</p>
+            </div>
+            <div class="get_remaining_time">
+                <label for="event-subject">Event Subject</label>
+                <input type="text" id="event-subject" placeholder="Enter event subject (e.g., Exam related events)">
+
+                <label for="event-date-input">Event Date</label>
+                <input type="date" id="event-date-input">
+
+                <label for="event-time-input">Event Time</label>
+                <input type="time" id="event-time-input">
+
+                <button id="add-event" class="add-event-btn">Add Event</button>
+                <!-- <button id="show-event" class="show-event-btn">Show Event</button> -->
+            </div>
+        </section>
+
+        <!-- Event Cards Section -->
+        <section class="event_cards_section">
+            <h2>My Events</h2>
+            <div id="event-cards-container" class="event-cards-container">
+                <!-- Event cards will be dynamically added here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./theme js/time.js"></script>
+    <script src="./theme js/event_manager.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get references to the button and sections
+            const newEventPlannerButton = document.getElementById("new-event-planner");
+            const otherImportantContent = document.querySelector(".other_important_content");
+            const eventCardsSection = document.querySelector(".event_cards_section");
+            // Initially hide the sections
+            otherImportantContent.style.display = "none";
+            eventCardsSection.style.display = "none";
+        
+            // Track the toggle state
+            let isSectionsVisible = false;
+        
+            // Add click event listener to the button
+            newEventPlannerButton.addEventListener("click", function () {
+                if (isSectionsVisible) {
+                    // Hide the sections
+                    otherImportantContent.style.display = "none";
+                    eventCardsSection.style.display = "none";
+                    newEventPlannerButton.textContent = "Event Planner"; // Reset button text
+                } else {
+                    // Show the sections
+                    otherImportantContent.style.display = "block";
+                    eventCardsSection.style.display = "block";
+                    newEventPlannerButton.textContent = "Close Event Planner"; // Update button text
+                }
+        
+                // Toggle the state
+                isSectionsVisible = !isSectionsVisible;
+            });
+        });
+        
+    </script>
+</body>
+
+</html>
